@@ -33,13 +33,13 @@ const DESIGN_H = 640;
 const FIXED_DT = 1 / 60; // seconds
 
 /** Gravity acceleration in logical pixels per second² */
-const GRAVITY = 1600;
+const GRAVITY = 2200;
 
 /** Upward velocity applied each time the player taps */
-const FLAP_FORCE = -520;
+const FLAP_FORCE = -680;
 
 /** Terminal falling velocity (caps downward speed) */
-const MAX_FALL_SPEED = 600;
+const MAX_FALL_SPEED = 750;
 
 /** Horizontal speed of pipes at game start (px/s) */
 const BASE_PIPE_SPEED = 160;
@@ -249,7 +249,7 @@ class Bird {
     // Tilt the bird based on velocity:
     //   nose-up (negative angle) when going up, nose-down when falling
     const targetAngle = clamp(this.vy * 0.0018, -0.45, 1.2);
-    this.angle = lerp(this.angle, targetAngle, 0.18);
+    this.angle = lerp(this.angle, targetAngle, 0.25);
 
     // Advance wing animation
     this._wingPhase += this._wingSpeed * dt;
