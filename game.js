@@ -240,11 +240,11 @@ class Bird {
       return;
     }
 
+    this.y += this.vy * dt;
+
     // Apply gravity
     this.vy += GRAVITY * dt;
     this.vy = Math.min(this.vy, MAX_FALL_SPEED);
-
-    this.y += this.vy * dt;
 
     // Tilt the bird based on velocity:
     //   nose-up (negative angle) when going up, nose-down when falling
@@ -973,9 +973,9 @@ class GameEngine {
         this._dyingTimer += dt;
         this._bg.update(dt, 0); // freeze background
         // Bird continues to fall under gravity while dying
+        this._bird.y += this._bird.vy * dt;
         this._bird.vy += GRAVITY * dt;
         this._bird.vy = Math.min(this._bird.vy, MAX_FALL_SPEED);
-        this._bird.y += this._bird.vy * dt;
         // Spin bird
         this._bird.angle = lerp(this._bird.angle, Math.PI / 2, 0.12);
         this._particles.update(dt);
