@@ -491,11 +491,10 @@ class PipeManager {
 
   /**
    * Advance all pipes and spawn new ones as needed.
-   * @param {number} dt           Fixed delta time (s)
-   * @param {number} canvasH      Logical canvas height
-   * @param {Function} onScore    Called with no args when a point is earned
+   * @param {number} dt       Fixed delta time (s)
+   * @param {number} canvasH  Logical canvas height
    */
-  update(dt, canvasH, onScore) {
+  update(dt, canvasH) {
     // Move existing pipes
     for (const pipe of this.pipes) {
       pipe.update(dt, this._speed);
@@ -690,9 +689,10 @@ class Background {
   }
 
   update(dt, pipeSpeed) {
-    // Clouds scroll at a fraction of the pipe speed for a parallax feel
+    // Clouds scroll at a fraction of the pipe speed for a parallax feel,
+    // plus their own individual drift speed for variety.
     for (const c of this._clouds) {
-      c.x -= (pipeSpeed * 0.25 - c.speed) * 0;
+      c.x -= pipeSpeed * 0.25 * dt;
       c.update(dt, this._canvasW, this._canvasH);
     }
     // Scroll the ground texture with the pipe speed
@@ -955,11 +955,11 @@ class GameEngine {
           this._bird.vy = 0;
         }
 
-        // Pipe updates + score
-        this._pipes.update(dt, DESIGN_H, () => {
+        // Pipe updates (movement, spawn, recycle) + score detection
+        this._pipes.update(dt, DESIGN_H);
+        this._pipes.checkScore(this._bird, () => {
           this._sound.playScore();
         });
-        this._pipes.checkScore(this._bird, () => {});
 
         // Pipe collision
         if (this._pipes.testCollision(this._bird)) {
