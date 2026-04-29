@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Responsive viewport – essential for mobile play -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <title>Flappy Bird</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrapper">
+    <!--
+      The single canvas element that the entire game is drawn onto.
+      Width / height are set in JavaScript so they scale to the device.
+    -->
+    <canvas id="gameCanvas"></canvas>
+  </div>
+
+  <!-- Game logic lives entirely in game.js -->
+  <script src="game.js"></script>
+</body>
+</html>

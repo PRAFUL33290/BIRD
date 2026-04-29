@@ -1,0 +1,38 @@
+/* =============================================
+   Flappy Bird – Global Styles
+   ============================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #1a1a2e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  touch-action: none; /* prevent default touch scrolling */
+}
+
+/* Wrapper keeps the canvas centred and sized correctly on every device */
+#game-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameCanvas {
+  display: block;
+  /* A subtle drop-shadow makes the game area "pop" from the dark background */
+  box-shadow: 0 0 40px rgba(0, 200, 255, 0.3), 0 0 80px rgba(0, 100, 200, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  /* Crisp pixel rendering – keeps hand-drawn canvas shapes sharp */
+  image-rendering: crisp-edges;
+}
